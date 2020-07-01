@@ -1,0 +1,35 @@
+version: "3.8"
+services:
+  d2d-api:
+    build:
+      context: ./d2d-api
+      dockerfile: Dockerfile.dev
+    container_name: d2d-api
+    ports:
+      - 8080:8080
+    networks:
+      - spring-mongo-network
+    depends_on:
+      - d2d-database
+
+  d2d-database:
+    image: mongo
+    container_name: d2d-database
+    ports:
+      - 27017:27017
+    networks:
+      - spring-mongo-network
+
+  d2d-web:
+    build:
+      context: ./d2d-web
+      dockerfile: Dockerfile.dev
+    container_name: d2d-web
+    ports:
+      - 3000:3000
+    restart: on-failure
+    stdin_open: true
+
+networks:
+  spring-mongo-network:
+    driver: bridge

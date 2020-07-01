@@ -1,0 +1,19 @@
+spring:
+  profiles: dev
+  data:
+    mongodb:
+      authentication-database: AllygatorShuttle
+      database: AllygatorShuttle
+      host: d2d-database
+      port: 27017
+
+logging:
+  level:
+    org:
+      springframework: ERROR
+    com:
+      door2door: DEBUG
+
+server:
+  error:
+    includeStacktrace: ALWAYS

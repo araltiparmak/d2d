@@ -23,6 +23,7 @@ $ gradle build
 **Web**
 ```
 $ cd d2d-web
+$ yarn build
 $ yarn start
 ```
 

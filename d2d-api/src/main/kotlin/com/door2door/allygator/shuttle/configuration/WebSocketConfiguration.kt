@@ -22,7 +22,7 @@ import java.util.concurrent.Executors
 class WebSocketConfiguration(private val objectMapper: ObjectMapper) {
 
     companion object {
-        val logger: Logger = LoggerFactory.getLogger(WebSocketConfiguration.javaClass)
+        val logger: Logger = LoggerFactory.getLogger(WebSocketConfiguration::class.java)
     }
 
     @Bean

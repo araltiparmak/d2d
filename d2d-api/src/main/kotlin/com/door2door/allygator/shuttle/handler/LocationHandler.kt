@@ -17,7 +17,7 @@ import reactor.core.publisher.Mono
 class LocationHandler(private val locationUpdateService: LocationUpdateService) {
 
     companion object {
-        val logger: Logger = LoggerFactory.getLogger(LocationHandler.javaClass)
+        val logger: Logger = LoggerFactory.getLogger(LocationHandler::class.java)
     }
 
     fun createLocation(request: ServerRequest): Mono<ServerResponse> {
@@ -26,17 +26,18 @@ class LocationHandler(private val locationUpdateService: LocationUpdateService) 
                 .bodyToFlux(LocationDTO::class.java)
                 .filter { inBoundaries(it) }
                 .flatMap<Location> { toWrite -> this.locationUpdateService.createLocation(toWrite, getId(request)) }
-
         return defaultWriteResponse(flux)
     }
+
 
     private fun inBoundaries(locationDto: LocationDTO): Boolean {
 
         val isInBoundaries = DistanceUtil.isInBoundaries(locationDto.lat, locationDto.lng)
 
-        isInBoundaries.let {
+        if (!isInBoundaries) {
             logger.info("Ignoring Location Update: $locationDto")
         }
+
         return isInBoundaries
     }
 

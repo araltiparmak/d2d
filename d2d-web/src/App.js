@@ -4,8 +4,8 @@ import './App.css';
 
 import { w3cwebsocket as W3CWebSocket } from "websocket";
 
-const streamingApiUrl = "ws://localhost:8080/ws/locations";
-const client = new W3CWebSocket(streamingApiUrl);
+const apiUrl = process.env.REACT_APP_API_WS_URL;
+const client = new W3CWebSocket(apiUrl);
 
 class App extends React.Component {
 
@@ -22,7 +22,7 @@ class App extends React.Component {
   componentWillMount() {
 
     client.onopen = () => {
-      console.log('Connection established.');
+      console.log('Connected to: ' + apiUrl);
     };
 
     client.onmessage = (message) => {

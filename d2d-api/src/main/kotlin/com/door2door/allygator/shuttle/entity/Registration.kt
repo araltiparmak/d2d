@@ -6,11 +6,10 @@ import org.springframework.data.mongodb.core.mapping.Document
 import java.time.Instant
 
 @Document
-data class Registration(
-        @Id val id: String?,
-        val vehicleId: String,
-        val activity: ActivityEnum,
-        val createdDate: Instant) {
+data class Registration(@Id val id: String?,
+                        val vehicleId: String,
+                        val activity: ActivityEnum,
+                        val createdDate: Instant) {
 
     companion object Factory {
 

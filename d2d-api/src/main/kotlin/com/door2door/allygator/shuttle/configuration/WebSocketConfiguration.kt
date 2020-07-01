@@ -4,6 +4,8 @@ import com.door2door.allygator.shuttle.entity.Location
 import com.door2door.allygator.shuttle.event.LocationUpdatedEventPublisher
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.reactive.handler.SimpleUrlHandlerMapping
@@ -18,6 +20,10 @@ import java.util.concurrent.Executors
 
 @Configuration
 class WebSocketConfiguration(private val objectMapper: ObjectMapper) {
+
+    companion object {
+        val logger: Logger = LoggerFactory.getLogger(WebSocketConfiguration.javaClass)
+    }
 
     @Bean
     fun handlerMapping(wsh: WebSocketHandler) = getSimpleUrlHandlerMapping(wsh)
@@ -51,14 +57,13 @@ class WebSocketConfiguration(private val objectMapper: ObjectMapper) {
     }
 
     private fun sendSocketMessage(str: String, session: WebSocketSession): WebSocketMessage {
-        println("sending $str")
+        logger.info("Sending $str")
         return session.textMessage(str)
     }
 
     private fun writeValue(location: Location): String {
         try {
             return objectMapper.writeValueAsString(map(location))
-
         } catch (e: JsonProcessingException) {
             throw RuntimeException(e)
         }

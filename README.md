@@ -11,6 +11,7 @@
 | Docker, Docker Compose||
 
 **Running the application**<br/>
+
 **Docker**
 ```
 $ docker-compose up  
@@ -23,6 +24,8 @@ $ docker-compose up
 $ cd d2d-api
 $ gradle build
 ```
+
+
 **Web**
 ```
 $ cd d2d-web
@@ -30,9 +33,9 @@ $ yarn build
 $ yarn start
 ```
 
-**Api**: http://localhost:8080
+**Api:** http://localhost:8080 
 
-**Web**: http://localhost:3000
+**Web:** http://localhost:3000
 
 **Simulator**: https://github.com/araltiparmak/d2d-code-challenges/tree/master/resources/driver-simulator
 <br/>

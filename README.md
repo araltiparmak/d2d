@@ -1,7 +1,7 @@
 # d2d - fullStack
 
 **Used Tech Stack**
-|Tech|
+||
 |------|
 | Kotlin      | 
 | Spring Boot |
